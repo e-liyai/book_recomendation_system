@@ -1,5 +1,7 @@
 import pandas as pd
 from book_meta import book_meta
+from fav_books import fav_books
+
 dataFile = 'data/BX-Book-Ratings.csv'
 bookFile = 'data/BX-Books.csv'
 
@@ -11,11 +13,11 @@ print(books.head())
 
 print(book_meta('0002005018', books))
 
-def fav_books(user, N):
-    newdata = data[data['isbn'].isin(books.index)]
-    userRatings = newdata[data['user'] == user]
-    sortedRatings = pd.DataFrame.sort_values(userRatings, ['rating'], ascending=[0])[:N]
-    sortedRatings['title'] = sortedRatings['isbn'].apply(book_meta, args=(books,))
-    return sortedRatings
+# def fav_books(user, N):
+#     newdata = data[data['isbn'].isin(books.index)]
+#     userRatings = newdata[data['user'] == user]
+#     sortedRatings = pd.DataFrame.sort_values(userRatings, ['rating'], ascending=[0])[:N]
+#     sortedRatings['title'] = sortedRatings['isbn'].apply(book_meta, args=(books,))
+#     return sortedRatings
 
-print(fav_books(204622, 5))
+print(fav_books(204622, 5, data, books))
